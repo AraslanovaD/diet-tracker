@@ -24,6 +24,7 @@ public class Mapper {
 
     public MealDTO mapToMeatDTO(Meal meal){
         MealDTO mealDTO = new MealDTO();
+        mealDTO.setId(meal.getId());
         mealDTO.setDate(meal.getDate());
         mealDTO.setDishes(meal.getDishes());
         return mealDTO;

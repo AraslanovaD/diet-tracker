@@ -3,6 +3,7 @@ package diet.tracker.controller;
 import diet.tracker.dto.UserDTO;
 import diet.tracker.entity.Meal;
 import diet.tracker.entity.User;
+import diet.tracker.service.MealService;
 import diet.tracker.service.UserService;
 import diet.tracker.utils.Mapper;
 import jakarta.validation.Valid;
@@ -16,6 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
+    @Autowired
+    private MealService mealService;
+
     @Autowired
     private UserService service;
 
@@ -61,11 +65,13 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}/meals/{meal_id}")
-    public ResponseEntity<Void> deleteMeal(@PathVariable("id") int id, @PathVariable("meal_id") int mealId){
+    @DeleteMapping("/{id}/meals/{mealId}")
+    public ResponseEntity<Void> deleteMeal(@PathVariable("id") int id, @PathVariable("mealId") int mealId){
         service.get(id);
 
         service.removeMeal(id, mealId);
+
+        mealService.delete(mealId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

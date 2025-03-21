@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService{
     public User addMeal(int id, Meal meal) {
         User user = get(id);
         user.getMeals().add(meal);
+        meal.setUser(user);
         return save(user);
     }
 

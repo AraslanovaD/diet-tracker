@@ -6,12 +6,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class MealDTO {
+    private int id;
 
     private LocalDate date;
 
     private List<Dish> dishes;
 
     public MealDTO() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public LocalDate getDate() {
         return date;

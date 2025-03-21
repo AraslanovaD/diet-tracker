@@ -31,8 +31,8 @@ public class MealRestController {
     }
 
     @GetMapping("/{id}")
-    public Meal getById(@PathVariable("id")int id){
-        return service.get(id);
+    public MealDTO getById(@PathVariable("id")int id){
+        return mapper.mapToMeatDTO(service.get(id));
     }
 
     @PostMapping("")

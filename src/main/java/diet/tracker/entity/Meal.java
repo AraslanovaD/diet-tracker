@@ -69,4 +69,13 @@ public class Meal {
         this.dishes = dishes;
     }
 
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "id=" + id +
+                ", date=" + date +
+                ", user=" + user +
+                ", dishes=" + dishes +
+                '}';
+    }
 }
