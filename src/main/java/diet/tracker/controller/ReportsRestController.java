@@ -61,10 +61,17 @@ public class ReportsRestController {
     }
 
     @GetMapping("/history")
-    public List<MealDTO> getMealHistory(@PathVariable("id") int id){
-        return userService
+    public List<MealDTO> getMealHistory(@PathVariable("id") int id, @RequestParam(name="date",required = false) LocalDate date){
+        if(date==null)
+            return userService
                 .get(id)
                 .getMeals()
+                .stream()
+                .map(mapper::mapToMeatDTO)
+                .toList();
+
+        return mealService
+                .getByUserIdAndDate(id,date)
                 .stream()
                 .map(mapper::mapToMeatDTO)
                 .toList();
